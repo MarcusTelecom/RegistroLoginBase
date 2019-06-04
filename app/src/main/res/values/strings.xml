@@ -6,4 +6,6 @@
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="text_bt_register">Register</string>
     <string name="txt_login">LOGIN</string>
+    <string name="txt_edit_photo">Edit Photo</string>
+    <string name="txt_logout">Logout</string>
 </resources>
