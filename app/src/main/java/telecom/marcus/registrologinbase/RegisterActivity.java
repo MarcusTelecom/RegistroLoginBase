@@ -38,13 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         loading = findViewById(R.id.loading);
         name = findViewById(R.id.name);
-        txtLayout_name = findViewById(R.id.txtLayout_name);
+        txtLayout_name = findViewById(R.id.layout_name);
         email = findViewById(R.id.email);
-        txtLayout_email = findViewById(R.id.txtLayout_email);
+        txtLayout_email = findViewById(R.id.layout_email);
         password = findViewById(R.id.password);
-        txtLayout_password = findViewById(R.id.txtLayout_password);
+        txtLayout_password = findViewById(R.id.layout_password);
         c_password = findViewById(R.id.c_password);
-        txtLayout_c_password = findViewById(R.id.txtLayout_c_password);
+        txtLayout_c_password = findViewById(R.id.layout_c_password);
         btn_regist = findViewById(R.id.btn_regist);
 
         btn_regist.setOnClickListener(new View.OnClickListener() {
