@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FloatingActionButton btn_regist;
     private ProgressBar loading;
     private Intent intent;
-    private String extraName, extraEmail,getId;
+    private String extraName, extraEmail, getId;
     private Boolean newUser;
     SessionManager sessionManager;
     private static String URL_REGIST = "http://192.168.2.120/bd_users/register.php";
@@ -78,9 +78,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateForm()) {
-                    if (newUser){
+                    if (newUser) {
                         Regist();
-                    }else{
+                    } else {
                         SaveEditDetail();
                     }
                 }
@@ -104,13 +104,16 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
 
                             if (success.equals("1")) {
-                                Toast.makeText(RegisterActivity.this, "Register Success!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            } else if (success.equals("2")) {
+                                Toast.makeText(getApplicationContext(), "Error!!! \n" + message, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(RegisterActivity.this, "Register Error!" + e.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Register Error!" + e.toString(), Toast.LENGTH_LONG).show();
                             loading.setVisibility(View.GONE);
                             btn_regist.setEnabled(false);
                         }
@@ -120,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisterActivity.this, "Register Error!" + error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Register Error!" + error.toString(), Toast.LENGTH_LONG).show();
                         loading.setVisibility(View.GONE);
                         btn_regist.setEnabled(true);
                     }
@@ -143,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void SaveEditDetail() {
 
         sessionManager = new SessionManager(this);
-        sessionManager.checkLogin();
+
         final String name = this.name.getText().toString().trim();
         final String email = this.email.getText().toString().trim();
         final String password = this.password.getText().toString().trim();
@@ -162,8 +165,9 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
                             if (success.equals("1")) {
-                                Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                                 sessionManager.createSession(name, email, id);
                             }
                         } catch (JSONException e) {
@@ -186,7 +190,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", name);
                 params.put("email", email);
-                params.put("password",password);
+                params.put("password", password);
                 params.put("id", id);
 
                 return params;
