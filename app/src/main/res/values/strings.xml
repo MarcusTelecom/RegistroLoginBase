@@ -8,4 +8,6 @@
     <string name="txt_login">LOGIN</string>
     <string name="txt_edit_photo">Edit Photo</string>
     <string name="txt_logout">Logout</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
 </resources>

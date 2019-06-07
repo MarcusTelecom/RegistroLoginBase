@@ -53,16 +53,17 @@ public class LoginActivity extends AppCompatActivity {
                 String mEmail = email.getText().toString().trim();
                 String mPass = password.getText().toString().trim();
 
-                if (validateForm()) {
-                    Login(mEmail, mPass);
-                }
+                Login(mEmail, mPass);
+
             }
         });
 
         link_regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("newUser", true);
+                startActivity(intent);
             }
         });
     }
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String email = object.getString("email").trim();
                                     String id = object.getString("id").trim();
 
-                                    sessionManager.createSession(name,email,id);
+                                    sessionManager.createSession(name, email, id);
 
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     intent.putExtra("name", name);
@@ -125,23 +126,5 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }
-
-    private boolean validateForm() {
-
-        Boolean aBoolean = null;
-
-        if (email.getText().toString().isEmpty()) {
-            email.setError("Please insert email");
-            aBoolean = false;
-        }else if (password.getText().toString().isEmpty()){
-            password.setError("Please insert Password");
-            aBoolean = false;
-        }else {
-            aBoolean = true;
-        }
-
-        return aBoolean;
-
     }
 }
