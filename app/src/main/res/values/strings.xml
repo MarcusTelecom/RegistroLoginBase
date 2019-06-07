@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">Registro Login Base</string>
+
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
-    <string name="text_bt_register">Register</string>
-    <string name="txt_login">LOGIN</string>
-    <string name="txt_edit_photo">Edit Photo</string>
-    <string name="txt_logout">Logout</string>
+
+    <string name="txt_bt_register">New User</string>
+    <string name="txt_bt_login">Login</string>
+
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
+    <string name="title_home">Home</string>
+    <string name="txt_edit_user">Edit User</string>
 </resources>

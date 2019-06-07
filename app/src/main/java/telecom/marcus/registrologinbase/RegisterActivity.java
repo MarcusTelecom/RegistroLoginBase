@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private AppCompatEditText name, email, password, c_password;
     private TextInputLayout txtLayout_name, txtLayout_email, txtLayout_password, txtLayout_c_password;
     private FloatingActionButton btn_regist;
@@ -43,6 +45,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        toolbar = findViewById(R.id.toolbar_logout_register);
+        setSupportActionBar(toolbar);
+
 
         loading = findViewById(R.id.loading);
         name = findViewById(R.id.name);
@@ -58,14 +63,14 @@ public class RegisterActivity extends AppCompatActivity {
         intent = getIntent();
         newUser = intent.getBooleanExtra("newUser", true);
         if (newUser) {
-            Toast.makeText(RegisterActivity.this, "newUser", Toast.LENGTH_LONG).show();
+            getSupportActionBar().setTitle(R.string.txt_bt_register);
         } else {
             extraName = intent.getStringExtra("name");
             extraEmail = intent.getStringExtra("email");
             getId = intent.getStringExtra("id");
             name.setText(extraName);
             email.setText(extraEmail);
-            Toast.makeText(RegisterActivity.this, "NonewUser\n" + extraName + "\n" + extraEmail, Toast.LENGTH_LONG).show();
+            getSupportActionBar().setTitle(R.string.txt_edit_user);
         }
 
 

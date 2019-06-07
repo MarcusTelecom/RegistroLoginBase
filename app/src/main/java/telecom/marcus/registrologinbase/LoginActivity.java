@@ -3,6 +3,7 @@ package telecom.marcus.registrologinbase;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private EditText email, password;
     private Button btn_login;
     private TextView link_regist;
@@ -38,6 +40,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        toolbar = findViewById(R.id.toolbar_logout_login);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.txt_bt_login);
+
+
 
         sessionManager = new SessionManager(this);
 
@@ -91,8 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                                     sessionManager.createSession(name, email, id);
 
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                    intent.putExtra("name", name);
-                                    intent.putExtra("email", email);
 
                                     startActivity(intent);
                                     loading.setVisibility(View.GONE);
